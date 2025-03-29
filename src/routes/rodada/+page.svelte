@@ -1,34 +1,23 @@
 <script lang="ts">
-  import Round from "$lib/components/Round.svelte";
+  import Match from "$lib/components/Match.svelte";
+  import { page } from "$app/state";
+	import type { PageServerData } from "./$types";
 
-  let rounds = [
-    {
-      homeTeam: "Flamengo",
-      awayTeam: "Palmeiras",
-      datetime: "2022-11-27T20:00:00.000Z",
-    },
-    {
-      homeTeam: "São Paulo",
-      awayTeam: "Atlético-MG",
-      datetime: "2022-11-27T20:00:00.000Z",
-    },
-    {
-      homeTeam: "Corinthians",
-      awayTeam: "Santos",
-      datetime: "2022-11-27T20:00:00.000Z",
-    },
-    {
-      homeTeam: "Internacional",
-      awayTeam: "Grêmio",
-      datetime: "2022-11-27T20:00:00.000Z",
-    },
-  ];
+  export let data: PageServerData;
 </script>
 
-{#each rounds as round}
-  <Round
-    homeTeam={round.homeTeam}
-    awayTeam={round.awayTeam}
-    datetime={round.datetime}
-  />  
-{/each}
+{#if page.error}
+  <p class="text-red-500">{page.error.message}</p>
+{:else}
+  <div class="flex flex-col">
+    {#each data.matches as match}
+      <Match
+        homeTeam={match.home_team}
+        awayTeam={match.away_team}
+        startTime={match.start_time}
+        homeScore={match.home_score}
+        awayScore={match.away_score}
+      />  
+    {/each}
+  </div>
+{/if}
