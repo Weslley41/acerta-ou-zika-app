@@ -1,7 +1,26 @@
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 
-export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()]
-});
+// @ts-expect-error aparentemente não dá pra definir um tipo
+export default ({ mode }) => {
+	process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
+
+	return defineConfig({
+		plugins: [tailwindcss(), sveltekit()],
+		server: {
+			allowedHosts: true,
+			proxy: {
+				'/api': {
+					target: process.env.VITE_API_URL,
+					changeOrigin: true,
+					secure: true,
+					rewrite: (path) => path.replace(/^\/api/, '')
+				}
+			}
+		},
+		define: {
+			'process.env.NODE_ENV': '"production"'
+		}
+	});
+};

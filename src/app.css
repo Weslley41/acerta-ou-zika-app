@@ -1,2 +1,36 @@
 @import 'tailwindcss';
 @plugin "daisyui";
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	/* Hide scrollbar for Chrome, Safari and Opera */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	/* Hide scrollbar for IE, Edge and Firefox */
+	.no-scrollbar {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
+}
+
+@layer components {
+	.medal-content {
+		@apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-3/4 text-center text-3xl font-bold;
+	}
+
+	.medal-content.gold-medal-content {
+		color: #c59f00;
+	}
+
+	.medal-content.silver-medal-content {
+		color: #a3a3a3;
+	}
+
+	.medal-content.bronze-medal-content {
+		color: #c77335;
+	}
+}
