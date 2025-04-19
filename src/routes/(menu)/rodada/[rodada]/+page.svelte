@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 
 	let { data } = $props();
-	const totalPoints = data.guesses.reduce((a, g) => a + g.points_earned, 0);
+	const totalPoints = $derived(data.guesses.reduce((a, g) => a + g.points_earned, 0));
 
 	onMount(() => {
 		const container = document.querySelector('.collapse-content') as HTMLDivElement;
