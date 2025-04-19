@@ -14,9 +14,6 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			handleHttpError: 'warn'
-		},
-		serviceWorker: {
-			register: false
 		}
 	}
 };
