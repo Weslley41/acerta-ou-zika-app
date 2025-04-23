@@ -12,12 +12,7 @@ export default ({ mode }) => {
 		server: {
 			allowedHosts: true,
 			proxy: {
-				'/api': {
-					target: process.env.VITE_API_URL,
-					changeOrigin: true,
-					secure: true,
-					rewrite: (path) => path.replace(/^\/api/, '')
-				}
+				'/api': `${process.env.VITE_API_URL}`
 			}
 		},
 		define: {
