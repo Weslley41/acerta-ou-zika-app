@@ -9,12 +9,6 @@ export default ({ mode }) => {
 
 	return defineConfig({
 		plugins: [tailwindcss(), sveltekit(), SvelteKitPWA()],
-		server: {
-			allowedHosts: true,
-			proxy: {
-				'/api': `${process.env.VITE_API_URL}`
-			}
-		},
 		define: {
 			'process.env.NODE_ENV': '"production"'
 		}

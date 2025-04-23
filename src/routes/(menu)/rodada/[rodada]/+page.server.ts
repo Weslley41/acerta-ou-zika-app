@@ -1,11 +1,12 @@
+import { PUBLIC_API_URL } from '$env/static/public';
 import type { MatchGuess } from '$lib/types';
 import type { Actions, PageServerLoad } from './$types';
 import { error, fail } from '@sveltejs/kit';
 
 export const load = (async ({ fetch, params }) => {
-	const guesses: MatchGuess[] = await fetch('/api/match-guesses/round/' + params.rodada, {
-		method: 'GET'
-	}).then(async (response) => {
+	const guesses: MatchGuess[] = await fetch(
+		`${PUBLIC_API_URL}/match-guesses/round/${params.rodada}`
+	).then(async (response) => {
 		const responseJson = await response.json();
 		if (response.ok) {
 			return responseJson;
@@ -26,7 +27,7 @@ export const actions = {
 			away_score: Number(formData.get('away_score'))
 		});
 
-		const response = await fetch('/api/match-guesses/' + id, {
+		const response = await fetch(`${PUBLIC_API_URL}/match-guesses/${id}`, {
 			method: 'PATCH',
 			body: data
 		});
