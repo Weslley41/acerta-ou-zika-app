@@ -9,6 +9,7 @@
 	const initialOptions = $state([
 		{ label: 'Tabela', href: '/tabela', icon: 'mdi:format-list-numbered', active: true },
 		{ label: 'Rodada', href: '/rodada/' + data.round, icon: 'mdi:soccer', active: false },
+		{ label: 'Ranking', href: '/ranking', icon: 'mdi:trophy', active: false },
 		{ label: 'Configurações', href: '/configuracoes', icon: 'mdi:settings-outline', active: false }
 	]);
 

@@ -5,7 +5,7 @@ import { error, fail } from '@sveltejs/kit';
 
 export const load = (async ({ fetch, params }) => {
 	const guesses: MatchGuess[] = await fetch(
-		`${PUBLIC_API_URL}/match-guesses/round/${params.rodada}`
+		`${PUBLIC_API_URL}/match-guesses/season/2025/round/${params.rodada}`
 	).then(async (response) => {
 		const responseJson = await response.json();
 		if (response.ok) {
