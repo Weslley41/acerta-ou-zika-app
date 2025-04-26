@@ -12,10 +12,10 @@
 
 <h1 class="mb-4 px-1 py-2 text-xl font-bold">CLASSIFICAÇÃO</h1>
 
-<div class="flex flex-col">
+<div class="flex flex-col gap-2">
 	{#each data.ranking as userRanked, index}
 		<div class="bg-base-200 border-base-100 collapse border">
-			<input type="checkbox" class="!min-h-0 !p-0" checked />
+			<input type="checkbox" class="!min-h-0 !p-0" />
 			<div
 				class="collapse-title inline-flex min-h-0 items-center justify-between gap-2 px-4 py-3 font-semibold"
 			>
